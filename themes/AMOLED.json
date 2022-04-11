@@ -127,5 +127,8 @@
       "PRIMARY_DARK_700": "#000000",
       "PRIMARY_DARK_800": "#000000",
       "PRIMARY_DARK_900": "#000000"
+   },
+   "unsafe_colors": {
+      "CHAT_GREY": "#000000"
    }
 }
