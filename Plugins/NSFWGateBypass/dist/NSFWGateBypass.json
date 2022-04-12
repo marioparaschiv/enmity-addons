@@ -1,6 +1,6 @@
 {
-	"name": "NSFWGateBypass",
-	"description": "Bypasses NSFW guild & channel gates.",
-	"author": "eternal",
-	"version": "1.0.0"
+   "name": "NSFWGateBypass",
+   "description": "Bypasses NSFW guild, channel and invite gates.",
+   "author": "eternal",
+   "version": "1.0.0"
 }
