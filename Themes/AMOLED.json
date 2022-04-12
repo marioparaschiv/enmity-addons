@@ -1,6 +1,10 @@
 {
    "name": "AMOLED",
    "theme_color_map": {
+      "KEYBOARD": [
+         "#000000",
+         "#FFFFFF"
+      ],
       "HEADER_PRIMARY": [
          "#FBFBFB",
          "#FFFFFF"
