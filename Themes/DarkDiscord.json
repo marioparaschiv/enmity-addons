@@ -1,6 +1,10 @@
 {
    "name": "DarkDiscord",
    "theme_color_map": {
+      "KEYBOARD": [
+         "#111111",
+         "#FFFFFF"
+      ],
       "HEADER_PRIMARY": [
          "#FBFBFB",
          "#FFFFFF"
