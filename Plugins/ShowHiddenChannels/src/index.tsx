@@ -54,13 +54,6 @@ const ShowHiddenChannels = {
          return ChannelRecord.getChannel(args[0])?.isHidden() ? 0 : res;
       });
 
-      const unpatch = Patcher.after(Channels, 'default', (self, args, res) => {
-         unpatch();
-         Patcher.after(res, 'type', (_, args, res) => {
-            console.log(res.props.channels);
-         });
-      });
-
       Patcher.after(ChannelItem, 'default', (_, [info], res) => {
          const { channel }: any = findInReactTree(info, r => r?.channel) ?? {};
          if (!channel?.isHidden()) return res;
