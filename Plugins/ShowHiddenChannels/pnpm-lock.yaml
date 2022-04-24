@@ -17,7 +17,7 @@ specifiers:
   rollup-plugin-esbuild: ^4.8.2
 
 dependencies:
-  enmity-api: github.com/enmity-mod/enmity-api/be2c88b20367dd0f940f0af6ca2a39e93cf1dbfb
+  enmity-api: github.com/enmity-mod/enmity-api/d1af0b7ed1ce3634b4852a08fe7c0376252ebaa6
 
 optionalDependencies:
   esbuild-darwin-64: 0.14.38
@@ -1266,8 +1266,8 @@ packages:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
     dev: true
 
-  github.com/enmity-mod/enmity-api/be2c88b20367dd0f940f0af6ca2a39e93cf1dbfb:
-    resolution: {tarball: https://codeload.github.com/enmity-mod/enmity-api/tar.gz/be2c88b20367dd0f940f0af6ca2a39e93cf1dbfb}
+  github.com/enmity-mod/enmity-api/d1af0b7ed1ce3634b4852a08fe7c0376252ebaa6:
+    resolution: {tarball: https://codeload.github.com/enmity-mod/enmity-api/tar.gz/d1af0b7ed1ce3634b4852a08fe7c0376252ebaa6}
     name: enmity-api
     version: 1.0.8
     dev: false

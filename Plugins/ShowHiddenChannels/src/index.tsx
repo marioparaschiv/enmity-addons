@@ -1,7 +1,9 @@
-import { bulk, filters } from 'enmity-api/modules';
-import { Plugin, registerPlugin } from 'enmity-api/plugins';
-import { React, View, Text } from 'enmity-api/react';
+import { registerPlugin } from 'enmity-api/plugins';
+import { bulk, filters, getByProps } from 'enmity-api/modules';
 import { create } from 'enmity-api/patcher';
+import { React } from 'enmity-api/react';
+
+import findInReactTree from './utils/findInReactTree';
 import Lock from './components/Lock';
 
 const Patcher = create('show-hidden-channels');
@@ -13,20 +15,23 @@ const [
    Notifications,
    Constants,
    Channel,
-   Channels
+   Fetcher,
+   Navigator,
+   Transitioner
 ] = bulk(
-   filters.byName('BaseChannelItem'),
+   m => m.default.name === 'BaseChannelItem',
    filters.byProps('getChannelPermissions'),
    filters.byProps('getChannel'),
    filters.byProps('hasUnread'),
    filters.byProps('Permissions'),
    filters.byName('ChannelRecord'),
-   m => m.default?.name === 'ConnectedGuildSidebar'
+   filters.byProps('fetchMessages'),
+   filters.byProps('selectChannel'),
+   filters.byProps('hasNavigated')
 );
 
 const ShowHiddenChannels = {
    name: 'ShowHiddenChannels',
-   commands: [],
 
    onStart() {
       this.can = Permissions.can.__original ?? Permissions.can;
@@ -60,48 +65,33 @@ const ShowHiddenChannels = {
 
          res.props.children.push(<Lock style={{ verticalAlign: 'center', justifyContent: 'center', alignItems: 'center' }} />);
       });
+
+      Patcher.instead(Fetcher, 'fetchMessages', (self, args, orig) => {
+         const { channelId } = args[0];
+         const channel = ChannelRecord.getChannel(channelId);
+         if (channel?.isHidden?.()) return;
+
+         return orig.apply(self, args);
+      });
+
+      Patcher.instead(Navigator, 'selectChannel', (self, args, original) => {
+         const channel = ChannelRecord.getChannel(args[1]);
+         if (channel?.isHidden?.()) return;
+
+         return original.apply(self, args);
+      });
+
+      Patcher.instead(Transitioner, 'transitionToGuild', (self, args, original) => {
+         const channel = ChannelRecord.getChannel(args[1]);
+         if (channel?.isHidden?.()) return;
+
+         return original.apply(self, args);
+      });
    },
 
    onStop() {
       delete Channel.prototype.isHidden;
       Patcher.unpatchAll();
-   }
-};
-
-function findInReactTree(tree = {}, filter = _ => _, { ignore = [], walkable = ['props', 'children'], maxProperties = 100 } = {}) {
-   const stack = [tree];
-   const wrapFilter = function (...args) {
-      try {
-         return Reflect.apply(filter, this, args);
-      } catch {
-         return false;
-      }
-   };
-
-   while (stack.length && maxProperties) {
-      const node = stack.shift();
-      if (wrapFilter(node)) return node;
-
-      if (Array.isArray(node)) {
-         stack.push(...node);
-      } else if (typeof node === 'object' && node !== null) {
-         if (walkable.length) {
-            for (const key in node) {
-               const value = node[key];
-               if (~walkable.indexOf(key) && !~ignore.indexOf(key)) {
-                  stack.push(value);
-               }
-            }
-         } else {
-            for (const key in node) {
-               const value = node[key];
-               if (node && ~ignore.indexOf(key)) continue;
-
-               stack.push(value);
-            }
-         }
-      }
-      maxProperties--;
    }
 };
 
