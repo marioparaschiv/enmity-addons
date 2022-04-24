@@ -1,5 +1,5 @@
 import { registerPlugin } from 'enmity-api/plugins';
-import { bulk, filters, getByProps } from 'enmity-api/modules';
+import { bulk, filters } from 'enmity-api/modules';
 import { create } from 'enmity-api/patcher';
 import { React } from 'enmity-api/react';
 
@@ -66,12 +66,12 @@ const ShowHiddenChannels = {
          res.props.children.push(<Lock />);
       });
 
-      Patcher.instead(Fetcher, 'fetchMessages', (self, args, orig) => {
+      Patcher.instead(Fetcher, 'fetchMessages', (self, args, original) => {
          const { channelId } = args[0];
          const channel = ChannelRecord.getChannel(channelId);
          if (channel?.isHidden?.()) return;
 
-         return orig.apply(self, args);
+         return original.apply(self, args);
       });
 
       Patcher.instead(Navigator, 'selectChannel', (self, args, original) => {
