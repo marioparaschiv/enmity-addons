@@ -63,7 +63,7 @@ const ShowHiddenChannels = {
          const { channel }: any = findInReactTree(info, r => r?.channel) ?? {};
          if (!channel?.isHidden()) return res;
 
-         res.props.children.push(<Lock style={{ verticalAlign: 'center', justifyContent: 'center', alignItems: 'center' }} />);
+         res.props.children.push(<Lock />);
       });
 
       Patcher.instead(Fetcher, 'fetchMessages', (self, args, orig) => {
