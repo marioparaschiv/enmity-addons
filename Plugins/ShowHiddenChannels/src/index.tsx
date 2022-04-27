@@ -34,6 +34,12 @@ const ShowHiddenChannels = {
    name: 'ShowHiddenChannels',
    author: 'eternal',
    version: '1.0.0',
+   authors: [
+      {
+         name: 'eternal',
+         id: '263689920210534400'
+      }
+   ],
 
    onStart() {
       this.can = Permissions.can.__original ?? Permissions.can;
