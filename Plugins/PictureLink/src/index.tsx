@@ -17,6 +17,14 @@ const [
 
 const PictureLink: Plugin = {
    name: 'PictureLink',
+   version: '1.0.0',
+   description: "Allows you to click avatars and banners to open them in-app.",
+   authors: [
+      {
+         name: 'eternal',
+         id: '263689920210534400'
+      }
+   ],
 
    onStart() {
       Patcher.after(Header, 'default', (_, [{ user }], res) => {

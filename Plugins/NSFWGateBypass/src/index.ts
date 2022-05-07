@@ -14,6 +14,14 @@ const [
 
 const NSFWGateBypass: Plugin = {
    name: 'NSFWGateBypass',
+   version: '1.0.0',
+   description: "Bypasses NSFW guild, channel and invite gates.",
+   authors: [
+      {
+         name: 'eternal',
+         id: '263689920210534400'
+      }
+   ],
 
    onStart() {
       Patcher.instead(Guilds, 'isNSFWInvite', () => false);

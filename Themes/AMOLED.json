@@ -1,5 +1,13 @@
 {
    "name": "AMOLED",
+   "version": "1.0.0",
+   "description": "A mostly pitch black theme with exceptions such as buttons being a bit lighter for convenience.",
+   "authors": [
+      {
+         "name": "eternal",
+         "id": "263689920210534400"
+      }
+   ],
    "theme_color_map": {
       "KEYBOARD": [
          "#000000",
