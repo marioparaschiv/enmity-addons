@@ -1,13 +1,19 @@
-import { getModule, getModuleByProps } from 'enmity-api/module';
 import { Plugin, registerPlugin } from 'enmity-api/plugins';
 import { React, Pressable } from 'enmity-api/react';
+import { bulk, filters } from 'enmity-api/modules';
 import { create } from 'enmity-api/patcher';
 
 const Patcher = create('picture-link');
 
-const ProfileBanner = getModule(m => m.default?.name === 'ProfileBanner');
-const Header = getModule(m => m.default?.name === 'HeaderAvatar');
-const Router = getModuleByProps('transitionToGuild');
+const [
+   ProfileBanner,
+   Header,
+   Router
+] = bulk(
+   m => m.default?.name === 'ProfileBanner',
+   m => m.default?.name === 'HeaderAvatar',
+   filters.byProps('transitionToGuild')
+);
 
 const PictureLink: Plugin = {
    name: 'PictureLink',
