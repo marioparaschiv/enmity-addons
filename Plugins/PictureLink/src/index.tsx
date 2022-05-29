@@ -1,7 +1,8 @@
-import { Plugin, registerPlugin } from 'enmity-api/plugins';
-import { React, Pressable } from 'enmity-api/react';
-import { bulk, filters } from 'enmity-api/modules';
-import { create } from 'enmity-api/patcher';
+import { Plugin, registerPlugin } from 'enmity/managers/plugins';
+import { Pressable } from 'enmity/components';
+import { bulk, filters } from 'enmity/metro';
+import { React } from 'enmity/metro/common';
+import { create } from 'enmity/patcher';
 
 const Patcher = create('picture-link');
 

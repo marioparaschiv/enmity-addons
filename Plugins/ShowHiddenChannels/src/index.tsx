@@ -1,9 +1,9 @@
-import { registerPlugin } from 'enmity-api/plugins';
-import { bulk, filters } from 'enmity-api/modules';
-import { create } from 'enmity-api/patcher';
-import { React } from 'enmity-api/react';
+import { registerPlugin } from 'enmity/managers/plugins';
+import { findInReactTree } from 'enmity/utilities';
+import { bulk, filters } from 'enmity/metro';
+import { React } from 'enmity/metro/common';
+import { create } from 'enmity/patcher';
 
-import findInReactTree from './utils/findInReactTree';
 import Lock from './components/Lock';
 
 const Patcher = create('show-hidden-channels');
@@ -19,7 +19,7 @@ const [
    Navigator,
    Transitioner
 ] = bulk(
-   m => m.default.name === 'BaseChannelItem',
+   filters.byName('BaseChannelItem', false),
    filters.byProps('getChannelPermissions'),
    filters.byProps('getChannel'),
    filters.byProps('hasUnread'),
@@ -69,7 +69,9 @@ const ShowHiddenChannels = {
 
       Patcher.after(ChannelItem, 'default', (_, [info], res) => {
          const { channel }: any = findInReactTree(info, r => r?.channel) ?? {};
+         console.log(channel.name);
          if (!channel?.isHidden()) return res;
+         console.log('isHidden');
 
          res.props.children.push(<Lock />);
       });

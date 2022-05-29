@@ -1,6 +1,6 @@
-import { Plugin, registerPlugin } from 'enmity-api/plugins';
-import { bulk, filters } from 'enmity-api/modules';
-import { create } from 'enmity-api/patcher';
+import { Plugin, registerPlugin } from 'enmity/managers/plugins';
+import { bulk, filters } from 'enmity/metro';
+import { create } from 'enmity/patcher';
 
 const Patcher = create('nsfw-gate-bypass');
 
@@ -15,7 +15,7 @@ const [
 const NSFWGateBypass: Plugin = {
    name: 'NSFWGateBypass',
    version: '1.0.0',
-   description: "Bypasses NSFW guild, channel and invite gates.",
+   description: 'Bypasses NSFW guild, channel and invite gates.',
    authors: [
       {
          name: 'eternal',
@@ -28,8 +28,8 @@ const NSFWGateBypass: Plugin = {
       Patcher.instead(Guilds, 'shouldNSFWGateGuild', () => false);
       Patcher.instead(Guilds, 'handleNSFWGuildInvite', () => false);
 
-      Patcher.after(User, 'getCurrentUser', (self, args, user) => {
-         if (user.nsfwAllowed == false) {
+      Patcher.after(User, 'getCurrentUser', (_, __, user) => {
+         if (user?.hasOwnProperty('nsfwAllowed')) {
             user.nsfwAllowed = true;
          }
 

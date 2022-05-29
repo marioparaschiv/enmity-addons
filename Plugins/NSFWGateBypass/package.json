@@ -18,12 +18,12 @@
       "rollup-plugin-esbuild": "^4.8.2"
    },
    "optionalDependencies": {
-      "esbuild-darwin-arm64": "^0.14.21",
       "esbuild-darwin-64": "^0.14.21",
+      "esbuild-darwin-arm64": "^0.14.21",
       "esbuild-linux-64": "^0.14.21",
       "esbuild-windows-64": "^0.14.21"
    },
    "dependencies": {
-      "enmity-api": "github:enmity-mod/enmity-api"
+      "enmity": "*"
    }
 }

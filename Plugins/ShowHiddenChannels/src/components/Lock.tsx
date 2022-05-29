@@ -1,18 +1,15 @@
-import { React, View } from 'enmity-api/react';
-import { getByProps } from 'enmity-api/modules';
-
-const Colors = getByProps('createThemedStyleSheet');
-const SVG = getByProps('Svg');
+import { React, SVG, ColorMap, StyleSheet } from 'enmity/metro/common';
+import { View } from 'enmity/components';
 
 export default React.memo(() => {
-   const style = Colors.createThemedStyleSheet({
+   const style = StyleSheet.createThemedStyleSheet({
       view: {
          verticalAlign: 'center',
          justifyContent: 'center',
          alignItems: 'center'
       },
       lock: {
-         color: Colors.ThemeColorMap.CHANNELS_DEFAULT,
+         color: ColorMap.ThemeColorMap.CHANNELS_DEFAULT,
       }
    });
 

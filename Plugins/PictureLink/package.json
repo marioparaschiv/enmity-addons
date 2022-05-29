@@ -24,6 +24,6 @@
       "esbuild-windows-64": "^0.14.21"
    },
    "dependencies": {
-      "enmity-api": "github:enmity-mod/enmity-api"
+      "enmity": "*"
    }
 }
