@@ -1,0 +1,11 @@
+{
+   "name": "Spotify",
+   "version": "1.0.0",
+   "description": "Brings spotify activity to mobile.",
+   "authors": [
+      {
+         "name": "eternal",
+         "id": "263689920210534400"
+      }
+   ]
+}
