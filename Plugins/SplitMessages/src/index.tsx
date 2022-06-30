@@ -30,8 +30,11 @@ const SplitMessages: Plugin = {
 
          const user = Users.getCurrentUser();
          const limit = user.premiumType === 2 ? Constants._MAX_MESSAGE_LENGTH_PREMIUM : Constants._MAX_MESSAGE_LENGTH;
+         if (opts.content?.length <= limit) {
+            return orig.apply(self, args);
+         }
 
-         const messages = opts.content.match(new RegExp(`.{0,${limit}}`, 'g'));
+         const messages = opts.content.match(new RegExp(`.{0,${limit}}`, 'g'))?.filter(Boolean);
          if (!messages || messages.length === 1) {
             return orig.apply(self, args);
          }
