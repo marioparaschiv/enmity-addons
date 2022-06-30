@@ -1,0 +1,11 @@
+{
+   "name": "SplitMessages",
+   "version": "1.0.0",
+   "description": "Splits messages over the message length limit into multiple.",
+   "authors": [
+      {
+         "name": "eternal",
+         "id": "263689920210534400"
+      }
+   ]
+}
