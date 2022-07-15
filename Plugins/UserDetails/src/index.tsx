@@ -18,8 +18,6 @@ const [
 
 const Patcher = create('user-details');
 
-const cache = {};
-
 const SplitMessages: Plugin = {
    ...manifest,
 
