@@ -1,0 +1,11 @@
+{
+   "name": "UserDetails",
+   "version": "1.0.0",
+   "description": "Shows joined at & created at dates on user profiles.",
+   "authors": [
+      {
+         "name": "eternal",
+         "id": "263689920210534400"
+      }
+   ]
+}
