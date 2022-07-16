@@ -121,6 +121,10 @@
          "transparent",
          "#ebedef"
       ],
+      "CHANNEL_ICON": [
+         "#B6B6B6",
+         "#6a7480"
+      ],
       "CHANNELS_DEFAULT": [
          "#B6B6B6",
          "#6a7480"
