@@ -73,7 +73,7 @@ const SplitMessages: Plugin = {
                   leading={<FormRow.Icon style={styles.icon} source={Add} />}
                   onPress={() => {
                      Toasts.open({
-                        content: Moment(user.createdAt).format('D MMMM YYYY HH:mm'),
+                        content: Moment(user.createdAt).format('LLL'),
                         source: Add
                      });
                   }}
@@ -88,7 +88,7 @@ const SplitMessages: Plugin = {
                      leading={<FormRow.Icon style={styles.icon} source={Joined} />}
                      onPress={() => {
                         Toasts.open({
-                           content: Moment(member.joinedAt).format('D MMMM YYYY HH:mm'),
+                           content: Moment(member.joinedAt).format('LLL'),
                            source: Joined
                         });
                      }}
