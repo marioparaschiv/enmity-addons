@@ -25,7 +25,7 @@ const SplitMessages: Plugin = {
       Patcher.instead(Header, 'default', (self, args, orig) => {
          const [{ user, channel, type }] = args;
 
-         if (type !== 0 || !channel) {
+         if (type !== 0) {
             return orig.apply(self, args);
          }
 
@@ -59,7 +59,7 @@ const SplitMessages: Plugin = {
          const Add = getIDByName('ic_header_members_add_24px');
          const Joined = getIDByName('ic_leave_24px');
 
-         const isGuild = channel.guild_id;
+         const isGuild = channel?.guild_id;
          const member = isGuild && Members.getMember(channel.guild_id, user.id);
          const guild = isGuild && Guilds.getGuild(channel.guild_id);
 
