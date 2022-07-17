@@ -25,7 +25,7 @@ const SplitMessages: Plugin = {
       Patcher.instead(Header, 'default', (self, args, orig) => {
          const [{ user, channel, type }] = args;
 
-         if (type !== 0) {
+         if (type !== 0 || !channel) {
             return orig.apply(self, args);
          }
 
