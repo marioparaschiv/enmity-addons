@@ -10,7 +10,7 @@ export default defineConfig({
    input: 'src/index.tsx',
    output: [
       {
-         file: `dist/${manifest.name}.js`,
+         file: `dist/${manifest.name.replace(' ', '')}.js`,
          format: 'cjs',
          strict: false
       },
