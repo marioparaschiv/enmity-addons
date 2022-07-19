@@ -1,4 +1,4 @@
-import { ColorMap, Moment, React, StyleSheet, Toasts } from 'enmity/metro/common';
+import { Constants, Moment, React, StyleSheet, Toasts } from 'enmity/metro/common';
 import { FormDivider, FormRow, Text, View } from 'enmity/components';
 import { Plugin, registerPlugin } from 'enmity/managers/plugins';
 import { getIDByName } from 'enmity/api/assets';
@@ -36,23 +36,23 @@ const SplitMessages: Plugin = {
                marginTop: 17.5
             },
             header: {
-               color: ColorMap.ThemeColorMap.HEADER_SECONDARY,
+               color: Constants.ThemeColorMap.HEADER_SECONDARY,
                opacity: 0.975,
-               fontFamily: ColorMap.Fonts.DISPLAY_BOLD,
+               fontFamily: Constants.Fonts.DISPLAY_BOLD,
                textTransform: 'uppercase',
                fontSize: 12.75,
                letterSpacing: 0.25
             },
             information: {
                borderRadius: 4,
-               backgroundColor: ColorMap.ThemeColorMap.BACKGROUND_PRIMARY,
+               backgroundColor: Constants.ThemeColorMap.BACKGROUND_PRIMARY,
                marginTop: 10
             },
             item: {
-               color: ColorMap.ThemeColorMap.TEXT_MUTED
+               color: Constants.ThemeColorMap.TEXT_MUTED
             },
             icon: {
-               color: ColorMap.ThemeColorMap.INTERACTIVE_NORMAL
+               color: Constants.ThemeColorMap.INTERACTIVE_NORMAL
             }
          });
 
