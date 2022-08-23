@@ -121,7 +121,8 @@ const ShowHiddenChannels = {
             container: {
                flex: 1,
                alignItems: 'center',
-               justifyContent: 'center'
+               justifyContent: 'center',
+               backgroundColor: Constants.ThemeColorMap.BACKGROUND_SECONDARY,
             },
             header: {
                color: Constants.ThemeColorMap.HEADER_PRIMARY,
