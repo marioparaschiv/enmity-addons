@@ -6,7 +6,8 @@ export default React.memo(() => {
       view: {
          verticalAlign: 'center',
          justifyContent: 'center',
-         alignItems: 'center'
+         alignItems: 'center',
+         marginLeft: 5
       },
       lock: {
          color: ColorMap.ThemeColorMap.CHANNELS_DEFAULT,
