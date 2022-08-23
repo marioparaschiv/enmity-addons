@@ -46,7 +46,7 @@ const ShowHiddenChannels = {
 
       const _this = this;
       Channel.prototype.isHidden = function () {
-         return this.type !== 1 && !_this.can(Constants.Permissions.VIEW_CHANNEL, this);
+         return ![1, 3].includes(this.type) && !_this.can(Constants.Permissions.VIEW_CHANNEL, this);
       };
 
       Patcher.after(Permissions, 'can', (_, [permission]) => {
