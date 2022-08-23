@@ -25,7 +25,7 @@ const [
    filters.byProps('getChannel'),
    filters.byProps('hasUnread'),
    filters.byName('ChannelRecord'),
-   filters.byProps('fetchMessages', 'init'),
+   filters.byProps('fetchMessages'),
    filters.byName('MessagesConnected', false),
    filters.byName('MainMembers', false)
 );
