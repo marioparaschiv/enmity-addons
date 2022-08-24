@@ -45,7 +45,7 @@ const SplitMessages: Plugin = {
             },
             information: {
                borderRadius: 4,
-               backgroundColor: Constants.ThemeColorMap.BACKGROUND_PRIMARY,
+               backgroundColor: Constants.ThemeColorMap.BACKGROUND_TERTIARY,
                marginTop: 10
             },
             item: {
@@ -63,42 +63,45 @@ const SplitMessages: Plugin = {
          const member = isGuild && Members.getMember(channel.guild_id, user.id);
          const guild = isGuild && Guilds.getGuild(channel.guild_id);
 
-         return [orig.apply(self, args), <View style={styles.container}>
-            <Text style={styles.header}>
-               Information
-            </Text>
-            <View style={styles.information}>
-               <FormRow
-                  label='Created'
-                  leading={<FormRow.Icon style={styles.icon} source={Add} />}
-                  onPress={() => {
-                     Toasts.open({
-                        content: Moment(user.createdAt).format('LLL'),
-                        source: Add
-                     });
-                  }}
-                  trailing={() => <Text style={styles.item}>
-                     {Moment(user.createdAt).fromNow()}
-                  </Text>}
-               />
-               {isGuild && member && <>
-                  <FormDivider />
+         return <>
+            {orig.apply(self, args)}
+            <View style={styles.container}>
+               <Text style={styles.header}>
+                  Information
+               </Text>
+               <View style={styles.information}>
                   <FormRow
-                     label={`Joined ${guild?.name ?? ''}`}
-                     leading={<FormRow.Icon style={styles.icon} source={Joined} />}
+                     label='Created'
+                     leading={<FormRow.Icon style={styles.icon} source={Add} />}
                      onPress={() => {
                         Toasts.open({
-                           content: Moment(member.joinedAt).format('LLL'),
-                           source: Joined
+                           content: Moment(user.createdAt).format('LLL'),
+                           source: Add
                         });
                      }}
                      trailing={() => <Text style={styles.item}>
-                        {Moment(member.joinedAt).fromNow()}
+                        {Moment(user.createdAt).fromNow()}
                      </Text>}
                   />
-               </>}
+                  {isGuild && member && <>
+                     <FormDivider />
+                     <FormRow
+                        label={`Joined ${guild?.name ?? ''}`}
+                        leading={<FormRow.Icon style={styles.icon} source={Joined} />}
+                        onPress={() => {
+                           Toasts.open({
+                              content: Moment(member.joinedAt).format('LLL'),
+                              source: Joined
+                           });
+                        }}
+                        trailing={() => <Text style={styles.item}>
+                           {Moment(member.joinedAt).fromNow()}
+                        </Text>}
+                     />
+                  </>}
+               </View>
             </View>
-         </View>];
+         </>;
       });
    },
 

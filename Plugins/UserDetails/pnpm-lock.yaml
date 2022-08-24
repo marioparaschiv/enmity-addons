@@ -7,7 +7,7 @@ specifiers:
   '@types/node': ^17.0.5
   '@typescript-eslint/eslint-plugin': ^5.8.1
   '@typescript-eslint/parser': ^5.8.1
-  enmity: 1.2.2
+  enmity: '*'
   esbuild: ^0.14.9
   esbuild-darwin-64: ^0.14.21
   esbuild-darwin-arm64: ^0.14.21
