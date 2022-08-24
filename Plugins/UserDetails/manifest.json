@@ -1,6 +1,6 @@
 {
    "name": "UserDetails",
-   "version": "1.0.0",
+   "version": "1.0.1",
    "description": "Shows joined at & created at dates on user profiles.",
    "authors": [
       {

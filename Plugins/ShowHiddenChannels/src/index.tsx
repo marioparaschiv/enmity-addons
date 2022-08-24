@@ -18,7 +18,8 @@ const [
    Channel,
    Fetcher,
    Messages,
-   Members
+   Members,
+   Payloads
 ] = bulk(
    filters.byName('BaseChannelItem', false),
    filters.byProps('getChannelPermissions'),
@@ -27,12 +28,13 @@ const [
    filters.byName('ChannelRecord'),
    filters.byProps('fetchMessages'),
    filters.byName('MessagesConnected', false),
-   filters.byName('MainMembers', false)
+   filters.byName('MainMembers', false),
+   filters.byProps('getOrCreate')
 );
 
 const ShowHiddenChannels = {
    name: 'ShowHiddenChannels',
-   version: '1.0.0',
+   version: '2.0.0',
    description: "Displays all hidden channels which can't be accessed, this won't allow you to read them.",
    authors: [
       {
@@ -167,7 +169,12 @@ const ShowHiddenChannels = {
       Patcher.instead(Fetcher, 'fetchMessages', (self, args, original) => {
          const { channelId } = args[0];
          const channel = ChannelRecord.getChannel(channelId);
-         if (channel?.isHidden?.()) return;
+         if (channel?.isHidden?.()) {
+            const messages = Payloads.getOrCreate(channelId);
+            messages.loadingMore = false;
+
+            return;
+         }
 
          return original.apply(self, args);
       });
