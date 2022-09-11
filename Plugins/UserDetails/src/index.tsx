@@ -11,7 +11,7 @@ const [
    Members,
    Guilds
 ] = bulk(
-   filters.byDisplayName('UserProfileHeader', false),
+   filters.byName('UserProfileHeader', false),
    filters.byProps('getMember'),
    filters.byProps('getGuild'),
 );
