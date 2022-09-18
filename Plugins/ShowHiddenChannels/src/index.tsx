@@ -57,16 +57,26 @@ const ShowHiddenChannels = {
          }
       });
 
-      Patcher.after(Notifications, 'hasUnread', (_, args, res) => {
-         return res && !ChannelRecord.getChannel(args[0])?.isHidden();
+      Patcher.after(Notifications, 'hasUnread', (_, [id], res) => {
+         return res && !ChannelRecord.getChannel(id)?.isHidden();
       });
 
-      Patcher.after(Notifications, 'hasUnreadPins', (_, args, res) => {
-         if (!ChannelRecord.getChannel(args[0])) return false;
+      Patcher.after(Notifications, 'hasRelevantUnread', (_, [channel], res) => {
+         return res && !channel.isHidden();
       });
 
-      Patcher.after(Notifications, 'getMentionCount', (_, args, res) => {
-         return ChannelRecord.getChannel(args[0])?.isHidden() ? 0 : res;
+      Patcher.after(Notifications, 'hasNotableUnread', (_, [id], res) => {
+         return res && !ChannelRecord.getChannel(id)?.isHidden();
+      });
+
+      Patcher.after(Notifications, 'hasUnreadPins', (_, [id]) => {
+         if (!ChannelRecord.getChannel(id)) {
+            return false;
+         }
+      });
+
+      Patcher.after(Notifications, 'getMentionCount', (_, [id], res) => {
+         return ChannelRecord.getChannel(id)?.isHidden() ? 0 : res;
       });
 
       const unpatch = Patcher.after(View, 'render', (_, __, res) => {
@@ -142,6 +152,9 @@ const ShowHiddenChannels = {
                paddingRight: 25,
                paddingTop: 5,
                textAlign: 'center'
+            },
+            lastMessage: {
+               marginTop: 5
             }
          });
 
@@ -152,6 +165,9 @@ const ShowHiddenChannels = {
             </Text>
             <Text style={styles.description}>
                You cannot see the contents of this channel. However, you may see info by swiping to the right.
+            </Text>
+            <Text style={{ ...styles.description, ...styles.lastMessage }}>
+               Last Message sent on {this.parseSnowflake(channel.lastMessageId)}.
             </Text>
          </View>;
       });
@@ -183,6 +199,20 @@ const ShowHiddenChannels = {
    onStop() {
       delete Channel.prototype.isHidden;
       Patcher.unpatchAll();
+   },
+
+   parseSnowflake(snowflake: string) {
+      try {
+         const id = parseInt(snowflake);
+         const binary = id.toString(2).padStart(64, '0');
+         const excerpt = binary.substring(0, 42);
+         const decimal = parseInt(excerpt, 2);
+         const unix = decimal + 1420070400000;
+         return new Date(unix).toLocaleString();
+      } catch (e) {
+         console.error(e);
+         return '(Failed to get date)';
+      }
    }
 };
 
