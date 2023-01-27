@@ -18,6 +18,7 @@ const [
   Channel,
   Fetcher,
   Messages,
+  MessagesWrapper,
   Members,
   Payloads
 ] = bulk(
@@ -28,6 +29,7 @@ const [
   filters.byProps('ChannelRecordBase'),
   filters.byProps('stores', 'fetchMessages'),
   filters.byName('MessagesConnected', false),
+  filters.byName('MessagesWrapperConnected', false),
   filters.byName('MainMembers', false),
   filters.byProps('getOrCreate')
 );
@@ -119,7 +121,8 @@ const ShowHiddenChannels = {
       return res;
     });
 
-    Patcher.after(Messages, 'default', (_, __, res) => {
+    const Messages_ = Messages ? Messages : MessagesWrapper
+    Patcher.after(Messages_, 'default', (_, __, res) => {
       const channel = res.props.channel;
       if (!channel?.isHidden()) return res;
 
