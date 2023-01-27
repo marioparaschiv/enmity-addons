@@ -36,7 +36,7 @@ const [
 
 const ShowHiddenChannels = {
   name: 'ShowHiddenChannels',
-  version: '2.0.2',
+  version: '2.0.3',
   description: "Displays all hidden channels which can't be accessed, this won't allow you to read them.",
   authors: [
     {
