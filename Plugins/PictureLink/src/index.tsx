@@ -13,12 +13,12 @@ const [
 ] = bulk(
   filters.byName('ProfileBanner', false),
   filters.byName('HeaderAvatar', false),
-  filters.byProps('transitionToGuild')
+  filters.byProps('transitionToGuild', 'openURL')
 );
 
 const PictureLink: Plugin = {
   name: 'PictureLink',
-  version: '1.0.1',
+  version: '1.0.2',
   description: "Allows you to click avatars and banners to open them in-app.",
   authors: [
     {
