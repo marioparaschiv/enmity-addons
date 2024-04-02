@@ -2,7 +2,7 @@
 	"name": "picture-link",
 	"description": "Allows you to click avatars and banners to open them in your browser.",
 	"version": "1.0.0",
-	"author": "Mario <mariovparaschiv@gmail.com> (github.com/localip)",
+	"author": "Mario <me@marioparaschiv.com> (github.com/marioparaschiv)",
 	"scripts": {
 		"build": "rollup -c --configPlugin esbuild"
 	},

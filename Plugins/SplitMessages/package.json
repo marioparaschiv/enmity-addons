@@ -3,7 +3,7 @@
 	"description": "Splits messages over the message length limit into multiple.",
 	"version": "1.0.0",
 	"license": "GPL-3.0",
-	"author": "Mario <mariovparaschiv@gmail.com> (github.com/localip)",
+	"author": "Mario <me@marioparaschiv.com> (github.com/marioparaschiv)",
 	"scripts": {
 		"build": "rollup -c --configPlugin esbuild"
 	},

@@ -2,7 +2,7 @@
 	"name": "nsfw-gate-bypass",
 	"description": "Bypasses NSFW guild, channel and invite gates.",
 	"version": "1.0.0",
-	"author": "Mario <mariovparaschiv@gmail.com> (github.com/localip)",
+	"author": "Mario <me@marioparaschiv.com> (github.com/marioparaschiv)",
 	"scripts": {
 		"build": "rollup -c --configPlugin esbuild"
 	},
